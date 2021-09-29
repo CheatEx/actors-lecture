@@ -1,0 +1,7 @@
+.python-venv
+.nix-mix
+.nix-hex
+
+.vscode
+
+/slides/
