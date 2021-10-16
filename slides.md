@@ -1,5 +1,5 @@
 [comment]: # (Set the theme:)
-[comment]: # (THEME = white)
+[comment]: # (THEME = simple)
 [comment]: # (CODE_THEME = zenburn)
 [comment]: # (The list of themes is at https://revealjs.com/themes/)
 [comment]: # (The list of code themes is at https://highlightjs.org/)
