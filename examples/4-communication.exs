@@ -1,8 +1,7 @@
 defmodule Communication do
   @moduledoc """
   > c "examples/3-communication.exs"
-  > import Communication
-  > c = spawn_controller()
+  > c = Communication.spawn_controller()
   > check_counts(c)
   > spawn_peers(c, 1000)
   > check_counts()
@@ -36,6 +35,9 @@ defmodule Communication do
   def controller_loop(count) do
     new_count =
       receive do
+        fun when is_function(fun) ->
+          fun.()
+
         {:peer, peer_pid} ->
           send(peer_pid, {:ping, self()})
           count

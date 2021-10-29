@@ -77,3 +77,9 @@ Actor can send messages to another using identity
 ## Actor: constraints
 
 Actor can receive message with explicit query
+
+[comment]: # (!!!)
+## References
+
+- Robert Virding. Hitchhiker's Tour of the BEAM. Erlang User Conference, 2014
+- Joe Armstrong. Making reliable distributed systems in the presence ofsodware errors. Dissertation, 2003
