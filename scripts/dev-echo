@@ -1,0 +1,3 @@
+#!/bin/bash
+
+iex --sname echo -S mix 

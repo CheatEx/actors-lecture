@@ -4,10 +4,10 @@ defmodule Echo.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {Echo.ServerSupervisor, 1010}
+      Supervisor.child_spec({Echo.ServerSupervisor, [name: :server_1, port: 1100]}, id: 1)
     ]
 
-    opts = [strategy: :one_for_one, name: Echo.ApplicationSupervisor]
+    opts = [strategy: :one_for_one, name: Echo.ServerSupervisor]
     Supervisor.start_link(children, opts)
   end
 end

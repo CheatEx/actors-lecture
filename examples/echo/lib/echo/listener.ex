@@ -1,32 +1,34 @@
-defmodule Echo.Listener do
-  alias SimpleCacheServer.Tcp.Server
-
+defmodule Echo.Handler do
   use GenServer, restart: :temporary
 
-  def start_link({server, _lsock} = arg) when is_pid(server) do
+  def start_link(arg) do
     GenServer.start_link(__MODULE__, arg)
   end
 
-  @impl true
-  def init({server, lsock}) do
-    {:ok, {server, lsock}, {:continue, []}}
+  def handle(handler, sock) do
+    GenServer.cast(handler, {:handle, sock})
   end
 
   @impl true
-  def handle_continue(_arg, {server, lsock} = state) do
-    {:ok, _sock} = :gen_tcp.accept(lsock)
-    Server.accepted(server, lsock)
-    {:noreply, state}
+  def init(_arg) do
+    {:ok, {}}
   end
 
   @impl true
-  def handle_info({:tcp, socket, data}, state) do
-    new_state = handle_data(socket, data, state)
+  def handle_cast({:handle, sock}, {} = _state) do
+    :inet.setopts(sock, active: true)
+    new_state = {sock}
     {:noreply, new_state}
   end
 
   @impl true
-  def handle_info({:tcp_closed, _socket}, state) do
+  def handle_info({:tcp, sock, data}, {sock} = state) do
+    new_state = handle_data(sock, data, state)
+    {:noreply, new_state}
+  end
+
+  @impl true
+  def handle_info({:tcp_closed, _sock}, state) do
     {:stop, :normal, state}
   end
 

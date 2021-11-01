@@ -6,6 +6,7 @@ defmodule Echo.MixProject do
       app: :echo,
       version: "0.1.0",
       elixir: "~> 1.12",
+      config_path: "./config/config.exs",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -13,7 +14,7 @@ defmodule Echo.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :sasl],
       mod: {Echo.Application, []}
     ]
   end

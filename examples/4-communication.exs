@@ -24,8 +24,9 @@ defmodule Communication do
 
   def spawn_peers(controller_pid, number)
       when is_pid(controller_pid) and is_number(number) and number >= 0 do
-    Range.new(1, number)
-    |> Enum.each(fn _ -> spawn(Communication, :peer_fn, [controller_pid]) end)
+    Enum.each(
+      Range.new(1, number),
+      fn _ -> spawn(Communication, :peer_fn, [controller_pid]) end)
   end
 
   def controller_fn() do

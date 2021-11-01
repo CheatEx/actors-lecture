@@ -1,30 +1,50 @@
 defmodule Echo.Server do
-  alias SimpleCacheServer.Tcp.Listener
+  alias Echo.Handler
 
-  use GenServer
+  use GenServer, restart: :permanent
 
-  def start_link(port) do
-    GenServer.start_link(__MODULE__, port)
+  def start_link(config) do
+    GenServer.start_link(__MODULE__, config, name: name(config))
   end
 
-  def accepted(server, lsock) do
-    GenServer.cast(server, {:accepted, lsock})
-  end
-
-  @impl true
-  def init(port) do
-    {:ok, lsock} = :gen_tcp.listen(port, active: true)
-    start_listener(lsock)
-    {:ok, lsock}
+  def accept_next(server) do
+    GenServer.cast(server, :accept_next)
   end
 
   @impl true
-  def handle_cast({:accepted, lsock = state}, state) do
-    start_listener(lsock)
+  def init(config) do
+    port = Keyword.fetch!(config, :port)
+    name = name(config)
+    {:ok, lsock} = :gen_tcp.listen(port, active: false, reuseaddr: true)
+    accept_next(self())
+    {:ok, {name, lsock}}
+  end
+
+  @impl true
+  def handle_cast(:accept_next, {name, lsock} = state) do
+    {:ok, sock} = :gen_tcp.accept(lsock)
+    start_handler(name, sock)
+    accept_next(self())
     {:noreply, state}
   end
 
-  defp start_listener(lsock) do
-    DynamicSupervisor.start_child(SimpleCacheServer.Tcp.LSup, {Listener, {self(), lsock}})
+  def supervisor_name(name) when is_atom(name) do
+    name_str = Atom.to_string(name)
+    String.to_atom(name_str <> "_supervisor")
+  end
+
+  def name(config) when is_list(config) do
+    Keyword.fetch!(config, :name)
+  end
+
+  defp start_handler(name, sock) do
+    {:ok, handler} =
+      DynamicSupervisor.start_child(
+        supervisor_name(name),
+        {Handler, {}}
+      )
+
+    :gen_tcp.controlling_process(sock, handler)
+    Handler.handle(handler, sock)
   end
 end
