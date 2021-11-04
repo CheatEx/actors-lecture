@@ -17,13 +17,4 @@ defmodule State do
   def run() do
     spawn(State, :stateful, ["Initial"])
   end
-
-  def test() do
-    {_, var1} = {123, "Some"}
-    IO.puts(var1)
-    {_, var1} = {123, "Other"}
-    IO.puts(var1)
-    ^var1 = "Wrong"
-    IO.puts(var1)
-  end
 end
