@@ -20,66 +20,103 @@
 Alexey Zlobin | Dell-EMC
 
 [comment]: # (!!!)
-## Threads-locks problems
+## Многопоточность с разделяемой памятью
 
-* Data races
-
-[comment]: # (!!!)
-## Threads-locks problems
-
-* Possible deadlocks
+Удобно?
 
 [comment]: # (!!!)
-## Threads-locks problems
+## Многопоточность с разделяемой памятью
 
-* CPU under-utilisation
+~~Удобно?~~
 
-[comment]: # (!!!)
-## Threads-locks problems
-
-* Waste on synchronisation and scheduling
-
-[comment]: # (!!!)
-## Actor solution
-
-* Make threads isolated
-* Restrict communications
-
-...but decrease cost?
+* Недерменизм
+* Дэдлоки
+* Ливлоки
+* Голодания
+* Недоиспользование CPU
+* Плохая масштабируемость
+* Накладные расходы на синхронизацию и планирование
 
 [comment]: # (!!!)
-## Actor: constraints
+## Многопоточность с разделяемой памятью
 
-Actor is isolated process with own execution flow
+~~Удобно?~~
 
-[comment]: # (!!!)
-## Actor: constraints
-
-Actor has identity
+* Ограничить взаимодействие потоков
+* Абстрагироваться от аппаратной реализации
 
 [comment]: # (!!!)
-## Actor: constraints
-
-Actors can’t interfere with each other memory
+## Модель акторов
 
 [comment]: # (!!!)
-## Actor: constraints
+## Модель акторов: ограничения
 
-Every actor has a message box
-
-
-[comment]: # (!!!)
-## Actor: constraints
-
-Actor can send messages to another using identity
+Актор - процесс с идентичностью, потоком исполнения и состоянием
 
 [comment]: # (!!!)
-## Actor: constraints
+## Модель акторов: ограничения
 
-Actor can receive message with explicit query
+Актор - имеет уникальный адрес для отправки ему сообщений
+
+[comment]: # (!!!)
+## Модель акторов: ограничения
+
+Актор - может создавать новые акторы, получая их адреса
+
+[comment]: # (!!!)
+## Модель акторов: ограничения
+
+Актор - может отправлять сообщения другим акторам адреса которых сам знает
+
+[comment]: # (!!!)
+## Модель акторов: ограничения
+
+Актор - может изменить своё состояние реагируя на пришедшее сообщение
+
+[comment]: # (!!!)
+## Модель акторов: ограничения
+
+Актор - может изменить своё состояние реагируя на пришедшее сообщение
+
+[comment]: # (!!!)
+## Модель акторов: следствия
+
+Актор может менять своё состояние без координации с другими
+
+[comment]: # (!!!)
+## Модель акторов: следствия
+
+Актор не обязан останавливать выполнение для коммуникации
+
+[comment]: # (!!!)
+## Модель акторов: следствия
+
+Среда выполнения может останавливать и запускать акторы независимо
+
+[comment]: # (!!!)
+## Модель акторов: следствия
+
+Среда выполнения может эффективно управлять ресурсами вместо акторов
+
+[comment]: # (!!!)
+## Модель акторов: следствия
+
+Среда выполнения может сохранять работоспособность при потере одиночных акторов
+
+[comment]: # (!!!)
+## Наивная реализация
+
+[comment]: # (!!!)
+## Безопасная реализация с виртуализацией
+
+* Планирования
+* Управления памятью
+* Коммуникации
+* Ввода-вывода
 
 [comment]: # (!!!)
 ## References
 
+- Gul Agha; Ian Mason; Scott Smith; Carolyn Talcott. A Foundation for Actor Computation. Journal of Functional Programming, 1993
 - Robert Virding. Hitchhiker's Tour of the BEAM. Erlang User Conference, 2014
 - Joe Armstrong. Making reliable distributed systems in the presence ofsodware errors. Dissertation, 2003
