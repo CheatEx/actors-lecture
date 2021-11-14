@@ -14,7 +14,7 @@ defmodule Echo.MixProject do
 
   def application do
     [
-      extra_applications: [:logger, :sasl],
+      extra_applications: [:logger],
       mod: {Echo.Application, []}
     ]
   end

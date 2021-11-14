@@ -1,4 +1,8 @@
 defmodule Demo do
+  @moduledoc """
+  > c "examples/2-modules.exs"
+  """
+
   def print(arg) do
     IO.puts(arg)
   end
@@ -16,7 +20,14 @@ defmodule Demo do
   end
 
   def print_all(list) when is_list(list) do
-    Enum.each(list, fn e -> IO.puts(e) end)
+    strs =
+      for v <- list do
+        inspect(v)
+      end
+
+    for s <- strs do
+      IO.puts(s)
+    end
   end
 
   def conditioned_print(arg) do

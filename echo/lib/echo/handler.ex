@@ -15,8 +15,8 @@ defmodule Echo.Handler do
   end
 
   @impl true
-  def handle_cast({:handle, sock}, {} = _state) do
-    :inet.setopts(sock, active: true)
+  def handle_cast({:handle, sock}, _state = {}) do
+    :inet.setopts(sock, active: true, mode: :binary)
     new_state = {sock}
     {:noreply, new_state}
   end
@@ -32,7 +32,12 @@ defmodule Echo.Handler do
     {:stop, :normal, state}
   end
 
+  defp handle_data(socket, "crash" <> _, state) do
+    raise "Crash"
+  end
+
   defp handle_data(socket, data, state) do
+    IO.puts(inspect(data))
     :gen_tcp.send(socket, data)
     state
   end
