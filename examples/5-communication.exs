@@ -2,9 +2,9 @@ defmodule Communication do
   @moduledoc """
   > c "examples/3-communication.exs"
   > c = Communication.spawn_controller()
-  > check_counts(c)
-  > spawn_peers(c, 1000)
-  > check_counts()
+  > Communication.check_counts(c)
+  > Communication.spawn_peers(c, 1000)
+  > Communication.check_counts(c)
   """
 
   def spawn_controller() do
@@ -26,7 +26,8 @@ defmodule Communication do
       when is_pid(controller_pid) and is_number(number) and number >= 0 do
     Enum.each(
       Range.new(1, number),
-      fn _ -> spawn(Communication, :peer_fn, [controller_pid]) end)
+      fn _ -> spawn(Communication, :peer_fn, [controller_pid]) end
+    )
   end
 
   def controller_fn() do
@@ -59,7 +60,7 @@ defmodule Communication do
     peer_loop(nil)
   end
 
-  defp peer_loop(state) do
+  def peer_loop(state) do
     receive do
       {:ping, from} ->
         send(from, {:pong, :pong})

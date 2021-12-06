@@ -15,6 +15,17 @@
 [comment]: # (respondToHashChanges: false)
 [comment]: # (Other settings are documented at https://revealjs.com/config/)
 
+<style>
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: Helvetica, sans-serif;
+}
+</style>
+
 ## Акторы
 
 Алексей Злобин | Dell-EMC
@@ -31,7 +42,7 @@
 
 ~~Удобно?~~
 
-* Недерменизм
+* Недетерменизм
 * Дэдлоки
 * Ливлоки
 * Голодания
@@ -296,12 +307,6 @@ Application
 
 [comment]: # (!!!)
 
-### Links
-
-Demo
-
-[comment]: # (!!!)
-
 ### Elixir behavoir
 
 Demo
@@ -345,14 +350,6 @@ Server
 ### Echo server
 
 Handler
-
-[comment]: # (!!!)
-
-### BEAM и OTP: за кадром
-
-* ETS - встроенная ДБ в памяти
-* Dialyzer - статический анализатор кода
-* API дебагера и трассировщика
 
 [comment]: # (!!!)
 

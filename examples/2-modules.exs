@@ -29,14 +29,4 @@ defmodule Demo do
       IO.puts(s)
     end
   end
-
-  def conditioned_print(arg) do
-    str = inspect(arg)
-
-    if String.length(str) > 10 do
-      IO.puts(str)
-    else
-      IO.puts("Too short")
-    end
-  end
 end
