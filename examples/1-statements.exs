@@ -8,6 +8,7 @@ response = {:fign, "not OK"}
 case response do
   {:ok, result} -> IO.puts(inspect(result))
   {:error, kind} -> IO.warn(inspect(kind))
+  _ -> IO.warn("Unexpected response structure")
 end
 
 str = "Hello!"
