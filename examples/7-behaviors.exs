@@ -1,13 +1,19 @@
 defmodule StateBehavior do
   @moduledoc """
-  > c = StateBehavior.start_link(CounterBehavior, [initial: 5])
+  > c "examples/7-behaviors.exs"
+  > c = StateBehavior.start_link(CounterBehavior, 5)
+  > send(c, {:show})
+  > send(c, {:command, :inc})
+  > send(c, {:command, :dec})
   """
 
   @type state() :: any()
 
-  @callback init(Keyword.t()) :: state()
+  @type command() :: Atom.t()
 
-  @callback update(any(), state()) :: state()
+  @callback init(any()) :: state()
+
+  @callback update(command(), state()) :: state()
 
   @callback show(state()) :: nil
 
@@ -43,7 +49,7 @@ defmodule CounterBehavior do
 
   @impl true
   def init(args) do
-    Keyword.fetch!(args, :initial)
+    args
   end
 
   @impl true
@@ -55,7 +61,7 @@ defmodule CounterBehavior do
     state - 1
   end
 
-  @impl
+  @impl true
   def show(state) do
     IO.puts(inspect(state))
   end

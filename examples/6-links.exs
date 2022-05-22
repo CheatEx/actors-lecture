@@ -1,24 +1,26 @@
 defmodule Signals do
   @moduledoc """
-  > c "examples/5-links.exs"
+  > c "examples/6-links.exs"
 
+  // After plain spawn process may exit independently
   > h = spawn(Signals, :host_fn, [])
   > Process.exit(h, :normal)
   > Process.alive?(h)
   > p = Signals.spawn(h, false)
-  > Process.alive?(p)
   > Process.exit(p, :reason)
   > Process.alive?(p)
+  > Process.alive?(h)
   > Process.exit(h, :reason)
   > Process.alive?(h)
 
+  // After spawn_link process terminated together
   > h = spawn(Signals, :host_fn, [])
   > p = Signals.spawn(h, true)
-  > Process.alive?(p)
   > Process.exit(p, :reason)
   > Process.alive?(p)
   > Process.alive?(h)
 
+  // Trap allows process handle termination
   > h = spawn(Signals, :host_fn_with_trap, [])
   > p = Signals.spawn(h, true)
   > Process.exit(p, :reason)
@@ -29,6 +31,7 @@ defmodule Signals do
   > Process.exit(h, :kill)
   > Process.alive?(h)
   """
+
   def host_fn() do
     receive do
       {:EXIT, source, reason} ->

@@ -33,7 +33,7 @@ defmodule Demo do
       end
 
     for s <- strs do
-      IO.puts(s)
+      print(s)
     end
   end
 end
