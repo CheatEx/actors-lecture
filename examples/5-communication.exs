@@ -1,34 +1,11 @@
 defmodule Communication do
   @moduledoc """
   > c "examples/5-communication.exs"
-  > c = Communication.spawn_controller()
+  > c = spawn(Communication, :controller_fn, [])
   > Communication.check_counts(c)
   > Communication.spawn_peers(c, 1000)
   > Communication.check_counts(c)
   """
-
-  def spawn_controller() do
-    spawn(Communication, :controller_fn, [])
-  end
-
-  def check_counts(controller_pid) when is_pid(controller_pid) do
-    send(controller_pid, {:get_count, self()})
-
-    receive do
-      {:count, value} ->
-        value
-    after
-      5000 -> nil
-    end
-  end
-
-  def spawn_peers(controller_pid, number)
-      when is_pid(controller_pid) and is_number(number) and number >= 0 do
-    Enum.each(
-      Range.new(1, number),
-      fn _ -> spawn(Communication, :peer_fn, [controller_pid]) end
-    )
-  end
 
   def controller_fn() do
     controller_loop(0)
@@ -37,10 +14,6 @@ defmodule Communication do
   def controller_loop(count) do
     new_count =
       receive do
-        {:peer, peer_pid} ->
-          send(peer_pid, {:ping, self()})
-          count
-
         {:pong, _} ->
           count + 1
 
@@ -52,16 +25,32 @@ defmodule Communication do
     controller_loop(new_count)
   end
 
-  def peer_fn(controller_pid) when is_pid(controller_pid) do
-    send(controller_pid, {:peer, self()})
-    peer_loop(nil)
+  def check_counts(controller_pid) do
+    send(controller_pid, {:get_count, self()})
+
+    receive do
+      {:count, value} ->
+        value
+    after
+      5000 -> nil
+    end
   end
 
-  def peer_loop(state) do
+  def spawn_peers(controller_pid, number) do
+    Range.new(1, number)
+    |> Enum.map(fn _ -> spawn(Communication, :peer_fn, []) end)
+    |> Enum.each(fn p -> send(p, {:ping, controller_pid}) end)
+  end
+
+  def peer_fn() do
+    peer_loop()
+  end
+
+  def peer_loop() do
     receive do
       {:ping, from} ->
         send(from, {:pong, :pong})
-        peer_loop(state)
+        peer_loop()
     end
   end
 end

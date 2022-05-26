@@ -1,6 +1,6 @@
 # Usage:
 # $ python -m pip install git+https://gitlab.com/da_doomer/markdown-slides.git
-# $ mdslides
+# $ python -m mdslides slides.md
 { nixpkgs ? import <nixpkgs> {} }:
 
 with nixpkgs;
@@ -11,7 +11,7 @@ in
 
 mkShell {
   buildInputs = 
-    [ elixir ] ++ 
+    [ elixir_1_13 ] ++ 
     [ glibcLocales libnotify inotify-tools ] ++
     [ python3 python3Packages.setuptools python3Packages.venvShellHook ];
   venvDir = ".python-venv";

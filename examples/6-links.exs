@@ -44,9 +44,6 @@ defmodule Signals do
         pid = spawn_link(fn -> Process.sleep(:infinity) end)
         send(from, {:spawned, pid})
 
-      {:spawn_link_bad, _from} ->
-        pid = spawn_link(fn -> 1 = 2 end)
-
       message ->
         IO.puts("A message #{inspect(message)}")
     end
@@ -72,9 +69,5 @@ defmodule Signals do
     receive do
       {:spawned, pid} -> pid
     end
-  end
-
-  def spawn_bad(host) do
-    send(host, {:spawn_link_bad, self()})
   end
 end

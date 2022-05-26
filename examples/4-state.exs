@@ -4,6 +4,8 @@ defmodule State do
   > pid = State.run()
   > send(pid, {:set, "Value"})
   > send(pid, {:quit, :normal})
+  > Process.alive?(pid)
+  > send(pid, {:set, "Value"})
   """
 
   def stateful(state) do
