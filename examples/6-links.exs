@@ -4,7 +4,6 @@ defmodule Signals do
 
   // After plain spawn process may exit independently
   > h = spawn(Signals, :host_fn, [])
-  > Process.exit(h, :normal)
   > Process.alive?(h)
   > p = Signals.spawn(h, false)
   > Process.exit(p, :reason)

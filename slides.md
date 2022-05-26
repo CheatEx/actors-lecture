@@ -403,6 +403,8 @@ Clojure
 * +
 * -
 
+[comment]: # (!!!)
+
 ### Ссылки
 
 1. Gul Agha; Ian Mason; Scott Smith; Carolyn Talcott. A Foundation for Actor Computation. Journal of Functional Programming, 1993
