@@ -1,5 +1,7 @@
 defmodule Signals do
   @moduledoc """
+  Diagram
+
   > c "examples/6-links.exs"
 
   // After plain spawn process may exit independently

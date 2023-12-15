@@ -1,7 +1,7 @@
 defmodule Echo.Server do
   alias Echo.Handler
 
-  use GenServer, restart: :temporary
+  use GenServer
 
   def start_link(config) do
     GenServer.start_link(__MODULE__, config, name: name(config))
@@ -33,14 +33,6 @@ defmodule Echo.Server do
     String.to_atom(name_str <> "_supervisor")
   end
 
-  defp name(config) when is_list(config) do
-    Keyword.fetch!(config, :name)
-  end
-
-  defp accept_next() do
-    send(self(), :accept_next)
-  end
-
   defp start_handler(handler_supervisor, sock) do
     {:ok, handler} =
       DynamicSupervisor.start_child(
@@ -50,5 +42,13 @@ defmodule Echo.Server do
 
     :gen_tcp.controlling_process(sock, handler)
     Handler.handle(handler, sock)
+  end
+
+  defp accept_next() do
+    send(self(), :accept_next)
+  end
+
+  defp name(config) when is_list(config) do
+    Keyword.fetch!(config, :name)
   end
 end

@@ -5,9 +5,9 @@
 
 with nixpkgs;
 
-let
-  mdslides = import ./markdown-slides.nix {};
-in
+# let
+#   mdslides = import ./markdown-slides.nix {};
+# in
 
 mkShell {
   buildInputs = 

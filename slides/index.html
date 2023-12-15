@@ -1,18 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Акторы</title>
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+		<!-- Theme used for syntax highlighted code -->
+<link rel="stylesheet" href="plugin/highlight/zenburn.min.css" id="highlight-theme"></head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+<section data-markdown  ><textarea data-template>
 [comment]: # (Set the theme:)
-[comment]: # (THEME = white)
-[comment]: # (CODE_THEME = base16/zenburn)
 [comment]: # (The list of themes is at https://revealjs.com/themes/)
 [comment]: # (The list of code themes is at https://highlightjs.org/)
 
 [comment]: # "You can also use quotes instead of parenthesis"
-[comment]: # "THEME = white"
 
 [comment]: # (Pass optional settings to reveal.js:)
-[comment]: # (controls: true)
-[comment]: # (keyboard: true)
 [comment]: # (markdown: { smartypants: true })
-[comment]: # (hash: false)
-[comment]: # (respondToHashChanges: false)
 [comment]: # (Other settings are documented at https://revealjs.com/config/)
 
 <style>
@@ -30,7 +39,8 @@
 
 Алексей Злобин | YADRO
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Многопоточность с разделяемой памятью
 
@@ -40,13 +50,15 @@
 * Блокирующий ввод-вывод
 * "Дорогие" потоки?
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Многопоточность с разделяемой памятью
 
 Удобно?
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Многопоточность с разделяемой памятью
 
@@ -58,7 +70,8 @@
 * Исключения и прерывания
 * Накладные расходы на синхронизацию и планирование
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Многопоточность с разделяемой памятью
 
@@ -67,71 +80,83 @@
 * Ограничить взаимодействие потоков
 * Абстрагироваться от аппаратной реализации
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: ограничения
 
 Актор - процесс с идентичностью, потоком исполнения и состоянием
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: ограничения
 
 Актор - имеет уникальный адрес для отправки сообщений
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: ограничения
 
 Актор - может создавать новые акторы и получать их адреса
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: ограничения
 
 Актор - может отправлять и получать сообщения используя адреса
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: ограничения
 
 Актор - может изменить своё состояние
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: следствия
 
 Актор может менять своё состояние без координации с другими
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: следствия
 
 Актор не обязан останавливать выполнение для коммуникации
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: следствия
 
 Среда выполнения может останавливать и запускать акторы независимо без ущерба производительности и доступности
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: следствия
 
 Среда выполнения может эффективно управлять ресурсами вместо акторов
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Модель акторов: следствия
 
 Приложение может сохранять работоспособность при потере одиночных акторов
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Наивная реализация
 
@@ -139,7 +164,8 @@
 * Актор: пара поток-очередь
 * Адрес: ссылка на пару
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Безопасная реализация с виртуализацией
 
@@ -148,11 +174,13 @@
 * Коммуникации
 * Ввода-вывода
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Erlang и BEAM VM
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Erlang и BEAM VM: происхождение
 
@@ -162,13 +190,15 @@
 * Середина 90х - современная ВМ BEAM и язык Erlang
 * Конец 90х потеря коммерческого интереса и публикация в Open Source
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Сдвиг терминологии
 
 Процессы
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Erlang и BEAM VM: дополнительные ограничения
 
@@ -177,13 +207,15 @@
 * Сообщения упорядочены в очередь
 * Получение сообщения - явная операция
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Особенности BEAM: масштабируемость
 
 Миллионы процессов
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Особенности BEAM: планировщик
 
@@ -193,7 +225,8 @@
 
 Умеет создавать OC процессы когда это требуется
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Особенности BEAM: управление памятью
 
@@ -208,19 +241,22 @@
 * Сырые массивы байт
 * Встроенная БД
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Особенности BEAM: управление ресурсами
 
 Привязываются к процессам создателями освобождаются в случае их смерти
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Особенности BEAM: служба имен
 
 Позволяет именовать процессы и обращаться к ним по именам
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### *Особенности BEAM: тюнинг
 
@@ -230,7 +266,8 @@
 * Взаимодействие с ОС
 * Квоты ресурсов
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### *Особенности BEAM: внедрение и развертывание
 
@@ -243,7 +280,8 @@
 
 Также есть пользовательские интерфейсы к этим инструментам
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Особенности BEAM: выводы
 
@@ -251,13 +289,15 @@
 
 Однако сама по себе не защищает от ошибок проектирования
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Elixir
 
 Почему?
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Elixir: основные особенности
 
@@ -266,13 +306,15 @@
 * Паттерн-матчинг как основная управляющая конструкция
 * Метапрограммирование
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Elixir
 
 Демо
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### OTP
 
@@ -280,37 +322,43 @@
 
 В узком смысле - шаблон структурирования процессов для отказоустойчивости и управляемости приложений
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### OTP
 
 Достаточно ли линков и простой стратегии перезапуска "корневого" процесса?
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### OTP
 
 Дерево супервизоров
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### OTP
 
 GenServer
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### OTP
 
 GenSupervisor
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### OTP
 
 Application
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### OTP пример
 
@@ -320,7 +368,8 @@ Application
 * Устойчивый к ошибкам программирования
 * Пригодный для повторного использования
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Echo server
 
@@ -329,47 +378,55 @@ Application
 * Супервизор обработчиков
 * Супервизор компонента
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Echo server
 
 Application
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Echo server
 
 ServerSupervisor
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Echo server
 
 Server
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Echo server
 
 Handler
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### *Elixir behavior
 
 Demo
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Перспективы
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Альтернативы
 
 * Библиотеки акторов для популярных языков
   
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Альтернативы:CSP
 
@@ -378,7 +435,8 @@ Go, Clojure core.async
 * +
 * -
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Альтернативы: сoroutines
 
@@ -388,14 +446,16 @@ Kotlin coroutines, старые Лиспы, Scala
 * -
 * 
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### *Альтернативы: unikernels
 
 * +
 * -
   
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### *Альтернативы: STM
 
@@ -404,7 +464,8 @@ Clojure
 * +
 * -
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown  ><textarea data-template>
 
 ### Альтернативы: Cluster management
 
@@ -413,10 +474,38 @@ Kubernetes, Mesos, Pacemaker
 * +
 * -
 
-[comment]: # (!!!)
+</textarea></section>
+<section data-markdown ><textarea data-template>
 
 ### Ссылки
 
 1. Gul Agha; Ian Mason; Scott Smith; Carolyn Talcott. A Foundation for Actor Computation. Journal of Functional Programming, 1993
 2. Robert Virding. Hitchhiker's Tour of the BEAM. Erlang User Conference, 2014
 3. Joe Armstrong. Making reliable distributed systems in the presence of software errors. Dissertation, 2003
+</textarea></section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+Reveal.initialize({
+controls : false,
+markdown : {smartypants: true},
+controls : true,
+keyboard : true,
+hash : false,
+respondToHashChanges : false,
+				hash: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ]
+			});
+		</script>
+	</body>
+</html>

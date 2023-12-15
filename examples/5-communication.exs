@@ -1,5 +1,6 @@
 defmodule Communication do
   @moduledoc """
+  Diagram
   > c "examples/5-communication.exs"
   > c = spawn(Communication, :controller_fn, [])
   > Communication.check_counts(c)
